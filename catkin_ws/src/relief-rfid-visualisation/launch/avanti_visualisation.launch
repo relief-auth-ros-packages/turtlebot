@@ -1,0 +1,26 @@
+<launch>
+
+  <arg name="use_images"                        value="true" />
+  <!--include file="$(find rviz_plugin_manager)/launch/rviz_plugin_manager.launch"/-->
+
+  <arg name="visualise_all_tags_topic"          value="visualise_all_tags" />
+  <arg name="visualise_no_tags_topic"           value="visualise_no_tags" />
+  <arg name="visualise_this_tag_topic"          value="visualise_this_tag" />
+  <arg name="visualise_this_tag_type_topic"     value="visualise_this_tag_type" />
+
+  <node name="relief_visualisation_node" pkg="relief_rfid_visualisation" type="relief_rfid_visualisation_node" output="screen">
+    <param name="rfid_locations_filename"       value="$(find relief_rfid_detection)/results/rfid_locations.txt" />
+    <param name="rfid_tag_info_filename"        value="$(find relief_rfid_visualisation)/tag_information/tag_info.txt" />
+    <param name="rfid_tag_images_directory"     value="$(find relief_rfid_visualisation)/imgs" />
+    <param name="callback_period"               value="1.0" />
+    <param name="use_images"                    value="$(arg use_images)" />
+
+    <param name="visualise_all_tags_topic"      value="$(arg visualise_all_tags_topic)" />
+    <param name="visualise_no_tags_topic"       value="$(arg visualise_no_tags_topic)" />
+    <param name="visualise_this_tag_topic"      value="$(arg visualise_this_tag_topic)" />
+    <param name="visualise_this_tag_type_topic" value="$(arg visualise_this_tag_type_topic)" />
+  </node>
+
+  <node name="rviz" pkg="rviz" type="rviz" output="log" args="" />
+
+</launch>

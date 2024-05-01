@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<robot name="sensor_imu" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/turtlebot_gazebo.urdf.xacro"/>
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/turtlebot_properties.urdf.xacro"/>
+
+  <xacro:macro name="sensor_imu" params="parent">
+    <link name="imu_link">
+
+      <inertial>
+        <mass value="0.01"/>
+        <origin xyz="0 0 0"/>
+        <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001"/>
+      </inertial>
+
+      <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+          <box size="0.01 0.01 0.01"/>
+        </geometry>
+      </visual>
+
+    </link>
+
+    <joint name="imu_joint" type="fixed">
+      <parent link="${parent}"/>
+      <child link="imu_link"/>
+      <origin xyz="0.0 0 0.0" rpy="0 0 0"/>
+    </joint>
+  </xacro:macro>
+
+</robot>

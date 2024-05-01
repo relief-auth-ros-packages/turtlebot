@@ -1,0 +1,9 @@
+<launch>
+  <!-- Deprecated -->
+  <!--
+  <include file="$(find relief_rplidar_ros)/launch/rplidar.launch"/>
+  -->
+
+  <include file="$(find relief_turtlebot_bringup)/launch/hokuyo.launch"/>
+
+</launch>

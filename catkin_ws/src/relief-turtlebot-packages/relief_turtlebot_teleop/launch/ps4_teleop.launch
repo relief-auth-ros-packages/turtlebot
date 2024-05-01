@@ -1,0 +1,17 @@
+<launch>
+
+  <include file="$(find relief_turtlebot_teleop)/launch/includes/velocity_smoother.launch.xml"/>
+
+  <!-- Parameters -->
+  <rosparam command="load" file="$(find relief_turtlebot_teleop)/param/ps4.yaml" />
+
+  <node name="turtlebot_teleop_ps4" pkg="relief_turtlebot_teleop" type="turtlebot_teleop_ps4" output="screen"/>
+
+  <!-- joy node -->
+  <node pkg="joy" type="joy_node" name="ps4_joy" output="screen" respawn="true">
+    <param name="dev"             type="string" value="/dev/input/js0" />
+    <param name="deadzone"        value="0.02" />
+    <param name="autorepeat_rate" value="10.0" type="double" />
+  </node>
+
+</launch>

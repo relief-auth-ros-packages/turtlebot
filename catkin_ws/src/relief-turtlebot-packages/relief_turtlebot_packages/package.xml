@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package>
+  <name>relief_turtlebot_packages</name>
+  <version>0.0.0</version>
+  <description>A collection of turtlebot packages for project RELIEF</description>
+
+  <maintainer email="alexandros.filotheou@issel.ee.auth.gr"></maintainer>
+
+  <license>BSD</license>
+
+  <author email="alexandros.filotheou@issel.ee.auth.gr"></author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+   <export>
+     <metapackage />
+   </export>
+</package>

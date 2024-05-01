@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot name="sensor_rplidar" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/turtlebot_gazebo.urdf.xacro"/>
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/turtlebot_properties.urdf.xacro"/>
+
+  <!-- rplidar 2D LIDAR -->
+  <xacro:macro name="sensor_rplidar" params="parent">
+
+    <joint name="laser" type="fixed">
+      <origin xyz="0.1124 0.0 0.4152" rpy="0 0 0" />
+      <parent link="${parent}" />
+      <child link="base_laser_link" />
+    </joint>
+
+    <!-- rplidar Laser -->
+    <link name="base_laser_link">
+
+      <collision>
+        <origin xyz="0 0 -0.0145" rpy="${M_PI/2} 0 ${3*M_PI/2}"/>
+        <geometry>
+          <mesh filename="package://relief_turtlebot_description/turtlebot/meshes/sensors/rplidar.dae" scale="0.001 0.001 0.001" />
+        </geometry>
+      </collision>
+
+      <visual>
+        <origin xyz="0 0 -0.0145" rpy="${M_PI/2} 0 ${3*M_PI/2}"/>
+        <geometry>
+          <mesh filename="package://relief_turtlebot_description/turtlebot/meshes/sensors/rplidar.dae" scale="0.001 0.001 0.001" />
+        </geometry>
+      </visual>
+
+      <inertial>
+        <mass value="1e-5" />
+        <origin xyz="0 0 -0.0145" rpy="${M_PI/2} 0 ${3*M_PI/2}"/>
+        <inertia ixx="0" ixy="0" ixz="0" iyy="0" iyz="0" izz="0" />
+      </inertial>
+    </link>
+
+	<!-- rplidar sensor for simulation -->
+    <rplidar_laser />
+  </xacro:macro>
+</robot>
+
+

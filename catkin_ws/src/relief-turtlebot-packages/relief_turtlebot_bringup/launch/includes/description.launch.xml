@@ -1,0 +1,14 @@
+<!--
+  Robot description only (used in private and paired master).
+ -->
+<launch>
+  <arg name="base"/>
+  <arg name="stacks"/>
+  <arg name="3d_sensor"/>
+  <arg name="num_cameras"/>
+
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find relief_turtlebot_description)/robots/turtlebot_one_camera.urdf.xacro'"  if="$(eval num_cameras == 1)"/>
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find relief_turtlebot_description)/robots/turtlebot_two_cameras.urdf.xacro'" if="$(eval num_cameras == 2)"/>
+  <param name="robot_description" command="$(arg urdf_file)" />
+
+</launch>

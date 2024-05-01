@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="ip_address"  default="192.168.1.10"/>
+  <arg name="frame_id"    default="base_laser_link"/>
+  <arg name="scan_topic"  default="scan"/>
+  <arg name="angle_min"   default="-2.35619"/> <!-- default 2.35619 -->
+  <arg name="angle_max"   default="2.35619"/>
+  <arg name="port"        default="/dev/ttyACM0"/>
+
+  <!-- HOKUYO -->
+  <node name="urg_node" pkg="urg_node" type="urg_node" respawn="false" output="screen">
+
+    <!-- If false: starts up faster, but timestamps will be inaccurate. -->
+    <param name="calibrate_time"      type="bool"   value="false"/>
+    <param name="synchronize_time"    type="bool"   value="false"/>
+
+    <!-- Set the port to connect to here -->
+    <param name="ip_address"          type="string" value="$(arg ip_address)" />
+    <!--param name="serial_port"         type="string" value="$(arg port)"/ -->
+    <!--param name="serial_baud"                       value="115200"/ -->
+    <param name="publish_intensity"   type="bool"   value="false"/>
+    <param name="publish_multiecho"   type="bool"   value="false"/>
+
+    <param name="frame_id"                          value="$(arg frame_id)"/>
+    <param name="angle_min"                         value="$(arg angle_min)"/>
+    <param name="angle_max"                         value="$(arg angle_max)"/>
+
+    <!--
+    <remap from="scan" to="$(arg scan_topic)"/>
+    -->
+
+  </node>
+
+
+</launch>

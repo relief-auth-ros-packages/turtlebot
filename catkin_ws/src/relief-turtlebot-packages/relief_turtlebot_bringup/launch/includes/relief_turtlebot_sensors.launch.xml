@@ -1,0 +1,22 @@
+<launch>
+
+  <arg name="num_cameras"/>
+
+  <!-- hokuyo -->
+  <include file="$(find relief_turtlebot_bringup)/launch/2dsensor.launch"/>
+
+  <!-- astra camera front; loaded by default -->
+  <include file="$(find relief_turtlebot_bringup)/launch/orbbec.launch">
+    <arg name="camera"    value="front_rgbd_camera"/>
+    <arg name="prefix"    value="front_rgbd_camera"/>
+    <arg name="device_id" value="18082830201"/>
+  </include>
+
+  <!-- astra camera back -->
+  <include file="$(find relief_turtlebot_bringup)/launch/orbbec.launch" if="$(eval num_cameras == 2)">
+    <arg name="camera"    value="rear_rgbd_camera"/>
+    <arg name="prefix"    value="rear_rgbd_camera"/>
+    <arg name="device_id" value="18082830202"/>
+  </include>
+
+</launch>

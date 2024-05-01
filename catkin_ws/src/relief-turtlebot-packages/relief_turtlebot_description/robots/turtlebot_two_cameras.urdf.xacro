@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!--
+    - Base      : kobuki
+    - Stacks    : hexagons
+    - 2d Sensor : rplidar (or hokuyo)
+    - 3d Sensor : astra
+    - imu       : imu
+-->
+<robot name="turtlebot" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/turtlebot_common_library.urdf.xacro" />
+  <xacro:include filename="$(find relief_turtlebot_description)/kobuki/urdf/kobuki.urdf.xacro" />
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/stacks/hexagons.urdf.xacro"/>
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/sensors/orbbec_astra.urdf.xacro"/>
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/sensors/hokuyo.urdf.xacro"/>
+  <!--
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/sensors/rplidar.urdf.xacro"/>
+  <xacro:include filename="$(find relief_turtlebot_description)/turtlebot/urdf/sensors/imu.urdf.xacro"/>
+  -->
+
+  <xacro:property name="M_PI" value="3.1415926535897931" />
+  <xacro:sensor_orbbec_astra prefix="front_rgbd_camera" parent="base_link" prefix_topic="front_rgbd_camera">
+    <origin xyz="0.1024 0.0 0.287" rpy="0 0 0"/>
+  </xacro:sensor_orbbec_astra>
+
+  <xacro:sensor_orbbec_astra prefix="rear_rgbd_camera" parent="base_link" prefix_topic="rear_rgbd_camera">
+    <origin xyz="-0.1024 0.0 0.287" rpy="0 0 ${M_PI}"/>
+  </xacro:sensor_orbbec_astra>
+
+  <kobuki/>
+  <stack_hexagons parent="base_link"/>
+  <sensor_hokuyo  parent="base_link"/>
+  <!--
+  <sensor_rplidar parent="base_link"/>
+  <sensor_imu     parent="base_link"/>
+  -->
+
+</robot>
